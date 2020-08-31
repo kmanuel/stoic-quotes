@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Marcus Aurelius",
+    "imagePath": "Aurelius.jpg"
+  },
+  {
+    "name": "Epictetus",
+    "imagePath": "epictetus.png"
+  },
+  {
+    "name": "Lucius Annaeus Seneca",
+    "imagePath": "seneca.jpeg"
+  }
+]
