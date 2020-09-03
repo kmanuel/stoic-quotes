@@ -3,9 +3,11 @@ import { View, Text, Share } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { IQuote } from '../services/quoteService'
 import { colors } from 'react-native-elements'
-import { PINK, SECONDARY } from '../constants/colors'
+import { PINK, SECONDARY, COMPLEMENT_GREEN, PAPER } from '../constants/colors'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { QuotesContext } from '../contexts/QuotesContext'
+import AppText from './AppText'
+import AuthorImage from './AuthorImage'
 
 type Props = {
   quote: IQuote
@@ -30,7 +32,7 @@ const FavoriteCard = ({ quote }: Props) => {
   return (
     <View
       style={{
-        backgroundColor: '#ccc',
+        backgroundColor: PAPER,
         padding: 10,
         borderRadius: 5,
         display: 'flex',
@@ -39,12 +41,13 @@ const FavoriteCard = ({ quote }: Props) => {
       }}
     >
       <View style={{ flex: 3 }}>
-        <Text style={{ fontSize: 16, lineHeight: 24 }}>"{quote.text}"</Text>
-        <Text
-          style={{ marginTop: 10, marginLeft: 10, fontSize: 16, color: '#333' }}
-        >
-          {quote.author}
-        </Text>
+        <AppText leading="large">{quote.text}</AppText>
+        <View style={{ marginTop: 5, display: 'flex', flexDirection: 'row' }}>
+          <AuthorImage author={{ name: quote.author }} width={50} />
+          <AppText type="secondary" style={{ marginTop: 10, marginLeft: 10 }}>
+            {quote.author}
+          </AppText>
+        </View>
       </View>
       <View
         style={{
@@ -60,7 +63,7 @@ const FavoriteCard = ({ quote }: Props) => {
         </TouchableOpacity>
 
         <TouchableOpacity onPress={onShare}>
-          <Icon name="share-alt" size={28} color={SECONDARY} />
+          <Icon name="share-alt" size={28} color={COMPLEMENT_GREEN} />
         </TouchableOpacity>
       </View>
     </View>

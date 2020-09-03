@@ -1,14 +1,21 @@
 import React from 'react'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import { Header as RNEHeader } from 'react-native-elements'
 import { useNavigation } from '@react-navigation/native'
 import { PURPLE } from '../constants/colors'
+import { View, Text } from 'react-native'
+
+export const HEADER_HEIGHT = 60
 
 const DrawerButton = ({ navigation }: any) => (
   <TouchableOpacity
     onPress={() => navigation.openDrawer()}
-    style={{ width: 40, height: 25 }}
+    style={{
+      width: HEADER_HEIGHT,
+      height: HEADER_HEIGHT,
+      display: 'flex',
+      justifyContent: 'center',
+    }}
   >
     <Icon name="bars" size={20} color="#fff" />
   </TouchableOpacity>
@@ -28,11 +35,38 @@ const HomeIcon = ({ navigation }) => {
 const Header = () => {
   const navigation = useNavigation()
   return (
-    <RNEHeader
+    <View
+      style={{
+        backgroundColor: PURPLE,
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        height: HEADER_HEIGHT,
+        paddingHorizontal: 20,
+      }}
+    >
+      <DrawerButton navigation={navigation} />
+      <Text
+        style={{
+          color: '#fff',
+          fontSize: 20,
+          fontWeight: 'bold',
+          letterSpacing: 1.3,
+        }}
+      >
+        The Stoic
+      </Text>
+    </View>
+  )
+}
+
+export default Header
+
+/* </View>
       placement="left"
       leftComponent={<DrawerButton navigation={navigation} />}
       centerComponent={{
-        text: 'The Stoic',
+        text: 'Stoic Today',
         style: {
           color: '#fff',
           fontSize: 20,
@@ -40,10 +74,6 @@ const Header = () => {
           letterSpacing: 1.3,
         },
       }}
-      rightComponent={<HomeIcon navigation={navigation} />}
+      // rightComponent={<HomeIcon navigation={navigation} />}
       backgroundColor={PURPLE}
-    />
-  )
-}
-
-export default Header
+    /> */

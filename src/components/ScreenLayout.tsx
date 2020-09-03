@@ -1,34 +1,54 @@
 import React from 'react'
-import { View } from 'react-native'
-import Header from './Header'
-
-import { AdMobBanner, setTestDeviceIDAsync } from 'expo-ads-admob'
-
-setTestDeviceIDAsync('EMULATOR')
+import { View, Text, Dimensions } from 'react-native'
+import { PURPLE } from '../constants/colors'
+import AdBanner, { BANNER_HEIGHT } from './AdBanner'
+import Header, { HEADER_HEIGHT } from './Header'
 
 type ScreenLayoutProps = {
+  showHeader?: boolean
   children: React.ReactNode
 }
 
-const ScreenLayout = ({ children }: ScreenLayoutProps) => {
+export const STATUS_BAR_HEIGHT = 25
+
+const ScreenLayout = ({ showHeader = true, children }: ScreenLayoutProps) => {
+  const mainContentHeight =
+    Dimensions.get('screen').height -
+    HEADER_HEIGHT -
+    BANNER_HEIGHT -
+    STATUS_BAR_HEIGHT
+
   return (
-    <View style={{ height: '100%' }}>
-      <Header />
-      {children}
+    <View
+      style={{
+        height: Dimensions.get('screen').height,
+        display: 'flex',
+        flexDirection: 'column',
+        overflow: 'hidden',
+        marginTop: STATUS_BAR_HEIGHT,
+      }}
+    >
+      <View style={{ display: 'flex', flexDirection: 'column' }}>
+        {showHeader && <Header />}
+        <View
+          style={{
+            flexShrink: 0,
+            flexGrow: 1,
+            height: mainContentHeight,
+          }}
+        >
+          {children}
+        </View>
+      </View>
       <View
         style={{
-          flexGrow: 1,
+          height: BANNER_HEIGHT,
+          backgroundColor: PURPLE,
           display: 'flex',
-          justifyContent: 'flex-end',
           alignItems: 'center',
         }}
       >
-        <AdMobBanner
-          bannerSize="largeBanner"
-          adUnitID="ca-app-pub-3940256099942544/6300978111" // Test ID, Replace with your-admob-unit-id
-          servePersonalizedAds // true or false
-          onDidFailToReceiveAdWithError={this.bannerError}
-        />
+        <AdBanner />
       </View>
     </View>
   )

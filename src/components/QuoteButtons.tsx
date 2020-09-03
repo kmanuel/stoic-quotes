@@ -4,7 +4,8 @@ import { TouchableOpacity, View } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { QuotesContext } from '../contexts/QuotesContext'
 import { IQuote } from '../services/quoteService'
-import { GREY, PINK } from '../constants/colors'
+import { GREY, PINK, COMPLEMENT_GREEN } from '../constants/colors'
+import { speakText } from '../services/voice-service'
 
 type RoundIconButtonProps = {
   iconName: string
@@ -15,13 +16,13 @@ type RoundIconButtonProps = {
 const RoundIconButton = ({
   iconName,
   onPress,
-  iconColor = '#282828',
+  iconColor = '#555',
 }: RoundIconButtonProps) => {
   return (
     <TouchableOpacity
       onPress={onPress}
       style={{
-        borderRadius: 100,
+        borderRadius: 10,
         backgroundColor: GREY,
         height: 60,
         width: 60,
@@ -43,11 +44,7 @@ const QuoteButtons = ({ quote }: QuoteButtonProps) => {
   const { toggleFavorite } = useContext(QuotesContext)
 
   const handleSpeak = () => {
-    Speech.speak(quote.text, {
-      voice: 'en-us-x-sfg#male_3-local',
-      pitch: 0.9,
-      rate: 0.9,
-    })
+    speakText(quote.text)
   }
 
   const handleFavoriteQuote = () => {
@@ -64,7 +61,7 @@ const QuoteButtons = ({ quote }: QuoteButtonProps) => {
     >
       <RoundIconButton onPress={handleSpeak} iconName="play" />
       <View style={{ marginLeft: 20 }}>
-        <RoundIconButton iconName="share-alt" />
+        <RoundIconButton iconName="share-alt" iconColor={COMPLEMENT_GREEN} />
       </View>
       <View style={{ marginLeft: 20 }}>
         <RoundIconButton

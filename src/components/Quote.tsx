@@ -7,16 +7,17 @@ import { IQuote } from '../services/quoteService'
 
 type QuoteProps = {
   quote: IQuote
+  styles?: any
 }
 
-const Quote = ({ quote }: QuoteProps) => {
+const Quote = ({ quote, styles }: QuoteProps) => {
   return (
     <View
       style={{
         paddingHorizontal: 10,
         flexGrow: 1,
         display: 'flex',
-        paddingBottom: 40,
+        ...styles,
       }}
     >
       <View style={{ marginTop: 10 }}>
@@ -25,7 +26,6 @@ const Quote = ({ quote }: QuoteProps) => {
       <ScrollView
         contentContainerStyle={{
           marginTop: 10,
-          paddingBottom: 40,
           flexGrow: 1,
           display: 'flex',
         }}
@@ -40,7 +40,7 @@ const Quote = ({ quote }: QuoteProps) => {
         >
           <QuoteText text={quote.text} />
         </View>
-        <View style={{ marginTop: 10 }}>
+        <View style={{ marginTop: 10, paddingBottom: 20 }}>
           <QuoteButtons quote={quote} />
         </View>
       </ScrollView>

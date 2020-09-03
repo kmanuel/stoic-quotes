@@ -1,14 +1,14 @@
 [
   {
-    "name": "Marcus Aurelius",
-    "imagePath": "Aurelius.jpg"
+    "name": "Marcus Aurelius"
   },
   {
-    "name": "Epictetus",
-    "imagePath": "epictetus.png"
+    "name": "Epictetus"
   },
   {
-    "name": "Lucius Annaeus Seneca",
-    "imagePath": "seneca.jpeg"
+    "name": "Lucius Annaeus Seneca"
+  },
+  {
+    "name": "Zeno of Citium"
   }
 ]

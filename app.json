@@ -4,19 +4,23 @@
     "slug": "stoic",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/logo_512.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/logo_512.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#6a197d"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
     "assetBundlePatterns": ["**/*"],
     "android": {
-      "package": "com.kmanuel.stoic",
-      "versionCode": 1
+      "package": "com.mkruisz.stoic",
+      "versionCode": 1,
+      "useNextNotificationsApi": true,
+      "config": {
+        "googleMobileAdsAppId": "ca-app-pub-1212314871829612~2779859433"
+      }
     },
     "ios": {
       "supportsTablet": true

@@ -18,7 +18,6 @@ export const askPermissions = async () => {
 }
 
 export const sendNotificationImmediately = async (quote: IQuote) => {
-  console.log('fire notification')
   await askPermissions()
   let notificationId = await Notifications.scheduleLocalNotificationAsync(
     {
@@ -29,5 +28,4 @@ export const sendNotificationImmediately = async (quote: IQuote) => {
       time: new Date().getTime() + 5000,
     }
   )
-  console.log(notificationId) // can be saved in AsyncStorage or send to server
 }

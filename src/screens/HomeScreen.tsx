@@ -39,11 +39,13 @@ const HomeScreen = () => {
         onScroll={handleScroll}
         decelerationRate="fast"
         renderItem={(item) => (
-          <View style={{ width: Dimensions.get('window').width }}>
-            <Quote quote={item.item} />
-          </View>
+          <Quote
+            quote={item.item}
+            styles={{ width: Dimensions.get('window').width }}
+          />
         )}
         keyExtractor={(item) => item.id.toString()}
+        style={{ flexGrow: 1 }}
       />
       <View style={{ backgroundColor: PURPLE, width: '100%' }}>
         <QuoteBar currentItem={itemIdx + 1} totalItems={quotes.length} />

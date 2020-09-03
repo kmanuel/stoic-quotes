@@ -44,8 +44,6 @@ export const loadQuotes = async (): Promise<IQuote[]> => {
       return { id: idx, ...a.item }
     })
 
-  console.log('saving quotes', quoteObjs.length)
-
   saveQuotes(quoteObjs)
   return quoteObjs
 }
@@ -85,9 +83,13 @@ export const loadFavorites = async (): Promise<IQuote[]> => {
 }
 
 export const setQuoteLastSeen = async (quoteId: number) => {
-  console.log('setting lastSeen on quoteId', quoteId)
   const quotes = await loadQuotes()
   const quoteIndex = quotes.findIndex((q) => q.id === quoteId)
   quotes[quoteIndex].lastSeen = new Date()
   saveQuotes(quotes)
+}
+
+export const hardReset = () => {
+  console.log('performing hard reset')
+  AsyncStorage.removeItem(QUOTES_KEY)
 }

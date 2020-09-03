@@ -1,9 +1,11 @@
 import React from 'react'
 import { Text } from 'react-native-elements'
 import { View, Image } from 'react-native'
+import AuthorImage from './AuthorImage'
 
 const authorData = {
   'Marcus Aurelius': {
+    name: 'Marcus Aurelius',
     image: (
       <Image
         source={require('../../assets/Aurelius.jpg')}
@@ -13,6 +15,7 @@ const authorData = {
     subtitle: 'Roman Emperor',
   },
   'Lucius Annaeus Seneca': {
+    name: 'Lucius Annaeus Seneca',
     image: (
       <Image
         source={require('../../assets/seneca.jpeg')}
@@ -22,6 +25,7 @@ const authorData = {
     subtitle: 'Roman Philosopher',
   },
   Epictetus: {
+    name: 'Epictetus',
     image: (
       <Image
         source={require('../../assets/epictetus.png')}
@@ -37,16 +41,10 @@ const Author = ({ author }: { author: string }) => {
   if (!authorObj) {
     return null
   }
-  console.log('getting data for author', author)
-  console.log('authorData is', authorData[author])
 
   return (
     <View style={{ display: 'flex', flexDirection: 'row' }}>
-      <View
-        style={{ width: 50, height: 50, borderRadius: 5, overflow: 'hidden' }}
-      >
-        {authorObj.image}
-      </View>
+      <AuthorImage author={authorObj} width={80} />
       <View
         style={{
           flexGrow: 1,
